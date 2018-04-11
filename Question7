@@ -3,28 +3,29 @@
 
 int main()
 {
-	int n,i,j,a,b,c,x=0;
+	int m,i,j,a,b,c,z=0;
 	int temp=0;
 	
 	printf("Enter number of processes\n");
-	scanf("%d",&n);
-	int q1[n],q2[n],q3[n];
-	int p[n],pro[n],bt[n],at[n],rt[n];
+	scanf("%d",&m);
+	int q1[m],q2[m],q3[m];
+	int p[m],pro[m],bt[m],at[m],rt[m];
 	
-	for(i=0;i<n;i++)  	// O(n)                             
+	for(i=0;i<m;i++)  	          // O(n)                             
 	{	
-		printf("\n\nEnter process name for process %d = ",i+1,"\n");
-		printf("P");
+		printf("\n\nEnter NAME for process %d: ",i+1,"\n");
 		scanf("%d",&pro[i]);
-		printf("\n\nEnter priority for this process ");
+		
+		printf("\n\nEnter PRIORITY for this process: ");
 		scanf("%d",&p[i]);
-		printf("\n\nEnter burst time for this process ");
+		
+		printf("\n\nEnter BURST TIME for this process: ");
 		scanf("%d",&bt[i]);
 	}
 	
-	for(i=0;i<n-1;i++) 	 //O(n-1)
+	for(i=0;i<m-1;i++) 	          //O(n-1)
 	{	
-		for(j=0;j<(n-i-1);j++)    //O(n-i-1)
+		for(j=0;j<(m-i-1);j++)    //O(n-i-1)
 		{	
 			if(p[j]>p[j+1])
 			{
@@ -41,7 +42,7 @@ int main()
 		}
 	}
 	
-	for(i=0;i<n;i++)     // O(n)
+	for(i=0;i<m;i++)               // O(n)
 	{
 		printf("Process P%d",pro[i]);
 		printf(" with priority %d",p[i]);
@@ -56,32 +57,64 @@ int main()
 	printf("Enter the number of processes you want to process in queue 3 :\n");
 	scanf("%d",&c);
 	
-	for(i=0;i<a;i++)   //O(a)
+	for(i=0;i<a;i++)               //O(a)
 	{                                               
-		q1[x]=p[i];
-		x=x+1;
+		q1[z]=p[i];
+		z=z+1;
 	}
 	
 	printf("_________________\n");
 	printf("|	QUEUE 1		Priority  Burst time  |\n");
 	printf("|_______________|\n");
-	for(i=0;i<a;i++)  //O(a)
+	for(i=0;i<a;i++)               //O(a)
 	{                                         
 		printf("	  P%d		   ",pro[i]);
 		printf("%d		",p[i]);
 		printf("%d\n",bt[i]);
 	}
 	printf("_________________\n\n");
-	for(i=a;i<b+a;i++)     //O(b)
+	for(i=a;i<b+a;i++)            //O(b)
 	{                                                                                                    
-		q2[x]=p[i];
-		x=x+1;
+		q2[z]=p[i];
+		z=z+1;
 	}
+
+	printf("\n");
+	printf("_________________\n");
+	printf("|	QUEUE 2		Priority  Burst time  |\n");
+	printf("|_______________|\n");
+	for(i=a;i<b+a;i++)            //O(b)
+	{                                                                                                    
+		printf("	  P%d		   ",pro[i]);
+		printf("%d     ",p[i]);
+		printf("%d\n",bt[i]);
+	}
+	
+	printf("_________________\n\n");
+	for(i=b+a;i<c+b+a;i++)        //O(c)
+	{                                                                                            
+		q3[z]=p[i];
+		z=z+1;
+	}
+	
+	printf("\n");
+	printf("_________________\n");
+	printf("|	QUEUE 3		Priority  Burst time  |\n");
+	printf("|_______________|\n");
+	for(i=b+a;i<c+a+b;i++)        //O(c)
+	{                                        					
+		printf("	  P%d		   ",pro[i]);
+		printf("%d     ",p[i]);
+		printf("%d\n",bt[i]);
+	}
+	printf("_________________\n");
+	printf("\n");
+	
 	int tq,t,remain,flag=0;
 	int waiting_time=0,turn_time=0;
 	remain=a;
 	printf("\n\nWELCOME TO QUEUE 1... LETS DO ROUND ROBIN SCHEDULING...\n\n");
-	for(i=0;i<a;i++)      //O(c)
+	for(i=0;i<a;i++)                //O(c)
 	{									  
 		printf("Enter arrival time for P%d =",pro[i]);
 		scanf("%d",&at[i]);
@@ -90,7 +123,7 @@ int main()
 		printf("Enter Time Quantum = ");
 		scanf("%d",&tq);
 		printf("\n\nProcess\t|Turnaround time|Waiting time\n\n");
-	for(t=0,i=0;remain!=0;)	     //O(a)
+	for(t=0,i=0;remain!=0;)	         //O(a)
 	{
 		if(rt[i]<=tq && rt[i]>0)
 		{
@@ -118,8 +151,6 @@ int main()
 		else
 			i=0;
 	}
-		printf("\n\nAverage waiting time= %f sec\n",waiting_time*1.0/a);
-		printf("\nAverage turnaround time= %f sec\n",turn_time*1.0/a);
 		printf("\n\nAverage waiting time= %f sec\n",waiting_time*1.0/a);
 		printf("\nAverage turnaround time= %f sec\n",turn_time*1.0/a);
 		printf("\n\n-------------------------------------------------------------\n\n");
