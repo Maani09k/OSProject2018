@@ -1,3 +1,5 @@
+// QUESTION NO. 6
+
 #include<stdio.h>
 #include<unistd.h>
 
@@ -127,7 +129,8 @@ int main()
 	int tq,t,remain,flag=0;
 	int waiting_time=0,turn_time=0;
 	remain=x;
-	printf("\n\nWELCOME TO QUEUE 1... LETS DO ROUND ROBIN SCHEDULING...\n\n");
+	printf("\n\n QUEUE 1... ROUND ROBIN SCHEDULING...\n\n");   /* This will arrange the given processes according to the ROUND ROBIN 
+	                                                              SCHEDULLING and gives the Waiting Time and TurnAround Time */
 	for(i=0;i<x;i++)                //O(z)
 	{									  
 		printf("Enter arrival time for P%d =",name[i]);
@@ -168,8 +171,13 @@ int main()
 	}
 		printf("\n\nAverage waiting time= %f sec\n",waiting_time*1.0/x);
 		printf("\nAverage turnaround time= %f sec\n",turn_time*1.0/x);
-		printf("\n\n-------------------------------------------------------------\n\n");
-		printf("\n\nWELCOME TO QUEUE 2... LETUS DO PRIORITY QUEUE SCHEDULING..\n");
+		/* and if the Time Quantum given to the Queue is completed it will send the unprocessed processes to next queue and 
+		      and it will get added after the processes which are already in that Queue. */
+		
+		
+		printf("\n\n*************************************************************************\n\n");
+		printf("\n\nQUEUE 2... PRIORITY QUEUE SCHEDULING\n"); /* This will arrange the given processes according to the PRIVATE QUEUE 
+	                                                              SCHEDULLING and gives the Waiting Time and TurnAround Time */
 		int wtime[m],ttime[m];int avg_wt,avg_tat,total=0;
 		wtime[x]=0;
 	for(i=x+1;i<y+x;i++)                //O(y)
@@ -194,8 +202,9 @@ int main()
 		printf("\n\nAverage waiting time= %f sec\n",avg_wt*1.0);
 		printf("\nAverage turnaround time= %f sec\n",avg_tat*1.0);
 	
-		printf("\n\n-------------------------------------------------------------\n\n");
-		printf("\n\nWelcome to QUEUE 3... let us do FCFS scheduling\n");
+		printf("\n\n**************************************************************************\n\n");
+		printf("\n\nQUEUE 3... FCFS scheduling\n");        /* This will arrange the given processes according to the FIRST COME FIRST SERVE
+	                                                              SCHEDULLING and gives the Waiting Time and TurnAround Time */
 		int wt[m],tat[m]; int avwt=0,avtat=0;
 		wt[y+x]=0;
 	for(i=y+x+1;i<z+x+y;i++)              //O(z)
@@ -206,6 +215,7 @@ int main()
 			wt[i]=wt[i]+bt[j];
 		}
 	}
+		
 		
 		printf("\nProcess\t\tBurst Time\tWaiting Time\tTurnaround Time");
 	
